@@ -1,4 +1,4 @@
-// main page to display both data and text
+// section to render data from contentful via graphql
 
 import React from "react"
 import { Link, graphql } from "gatsby"
@@ -6,14 +6,12 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import BackgroundImage from "../components/static/bgImage"
-import TextSection from "../components/static/textSection"
 import DataSection from "../components/static/dataSection"
 
-const IndexPage = ({data}) => (
+const DataPage = ({data}) => (
   <Layout>
-    <SEO title="Home" />
-    <BackgroundImage img={data.img.childImageSharp.fluid} title="Welcome" style="default-background"/>
-    <TextSection />
+    <SEO title="Data" />
+    <BackgroundImage img={data.img.childImageSharp.fluid} title="data" style="about-background"/>
     <DataSection things={data.post}/>
   </Layout>
 )
@@ -27,7 +25,7 @@ export const query = graphql`
       }
     }
   }
-  post:allContentfulItem{
+  post:allContentfulBlogItem{
     edges{
       node{
         id
@@ -48,4 +46,4 @@ export const query = graphql`
 }
 `
 
-export default IndexPage
+export default DataPage
